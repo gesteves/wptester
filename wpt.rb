@@ -53,37 +53,38 @@ class WPT
       Librato::Metrics.authenticate ENV['LIBRATO_USER'], ENV['LIBRATO_TOKEN']
 
       queue = Librato::Metrics::Queue.new
+      source = ENV['LIBRATO_SOURCE']
 
       unless wpt['data']['median']['firstView'].nil?
         first_view = wpt['data']['median']['firstView']
-        queue.add "#{ENV['PREFIX']}.wpt.first_view.speedindex" => first_view['SpeedIndex']
-        queue.add "#{ENV['PREFIX']}.wpt.first_view.timings.ttfb" => first_view['TTFB']
-        queue.add "#{ENV['PREFIX']}.wpt.first_view.timings.doc_complete" => first_view['docTime']
-        queue.add "#{ENV['PREFIX']}.wpt.first_view.timings.fully_loaded" => first_view['fullyLoaded']
-        queue.add "#{ENV['PREFIX']}.wpt.first_view.timings.visually_complete" => first_view['visualComplete']
-        queue.add "#{ENV['PREFIX']}.wpt.first_view.timings.render_start" => first_view['render']
-        queue.add "#{ENV['PREFIX']}.wpt.first_view.bytes.in" => first_view['bytesIn']
-        queue.add "#{ENV['PREFIX']}.wpt.first_view.bytes.in_doc" => first_view['bytesInDoc']
-        queue.add "#{ENV['PREFIX']}.wpt.first_view.dom_elements" => first_view['domElements']
-        queue.add "#{ENV['PREFIX']}.wpt.first_view.responses.200" => first_view['responses_200']
-        queue.add "#{ENV['PREFIX']}.wpt.first_view.responses.404" => first_view['responses_404']
-        queue.add "#{ENV['PREFIX']}.wpt.first_view.responses.other" => first_view['responses_other']
+        queue.add "wpt.first_view.speedindex" => { source: source, value: first_view['SpeedIndex']}
+        queue.add "wpt.first_view.timings.ttfb" => { source: source, value: first_view['TTFB']}
+        queue.add "wpt.first_view.timings.doc_complete" => { source: source, value: first_view['docTime']}
+        queue.add "wpt.first_view.timings.fully_loaded" => { source: source, value: first_view['fullyLoaded']}
+        queue.add "wpt.first_view.timings.visually_complete" => { source: source, value: first_view['visualComplete']}
+        queue.add "wpt.first_view.timings.render_start" => { source: source, value: first_view['render']}
+        queue.add "wpt.first_view.bytes.in" => { source: source, value: first_view['bytesIn']}
+        queue.add "wpt.first_view.bytes.in_doc" => { source: source, value: first_view['bytesInDoc']}
+        queue.add "wpt.first_view.dom_elements" => { source: source, value: first_view['domElements']}
+        queue.add "wpt.first_view.responses.200" => { source: source, value: first_view['responses_200']}
+        queue.add "wpt.first_view.responses.404" => { source: source, value: first_view['responses_404']}
+        queue.add "wpt.first_view.responses.other" => { source: source, value: first_view['responses_other']}
       end
 
       unless wpt['data']['median']['repeatView'].nil?
         repeat_view = wpt['data']['median']['repeatView']
-        queue.add "#{ENV['PREFIX']}.wpt.repeat_view.speedindex" => repeat_view['SpeedIndex']
-        queue.add "#{ENV['PREFIX']}.wpt.repeat_view.timings.ttfb" => repeat_view['TTFB']
-        queue.add "#{ENV['PREFIX']}.wpt.repeat_view.timings.doc_complete" => repeat_view['docTime']
-        queue.add "#{ENV['PREFIX']}.wpt.repeat_view.timings.fully_loaded" => repeat_view['fullyLoaded']
-        queue.add "#{ENV['PREFIX']}.wpt.repeat_view.timings.visually_complete" => repeat_view['visualComplete']
-        queue.add "#{ENV['PREFIX']}.wpt.repeat_view.timings.render_start" => repeat_view['render']
-        queue.add "#{ENV['PREFIX']}.wpt.repeat_view.bytes.in" => repeat_view['bytesIn']
-        queue.add "#{ENV['PREFIX']}.wpt.repeat_view.bytes.in_doc" => repeat_view['bytesInDoc']
-        queue.add "#{ENV['PREFIX']}.wpt.repeat_view.dom_elements" => repeat_view['domElements']
-        queue.add "#{ENV['PREFIX']}.wpt.repeat_view.responses.200" => repeat_view['responses_200']
-        queue.add "#{ENV['PREFIX']}.wpt.repeat_view.responses.404" => repeat_view['responses_404']
-        queue.add "#{ENV['PREFIX']}.wpt.repeat_view.responses.other" => repeat_view['responses_other']
+        queue.add "wpt.repeat_view.speedindex" => { source: source, value: repeat_view['SpeedIndex']}
+        queue.add "wpt.repeat_view.timings.ttfb" => { source: source, value: repeat_view['TTFB']}
+        queue.add "wpt.repeat_view.timings.doc_complete" => { source: source, value: repeat_view['docTime']}
+        queue.add "wpt.repeat_view.timings.fully_loaded" => { source: source, value: repeat_view['fullyLoaded']}
+        queue.add "wpt.repeat_view.timings.visually_complete" => { source: source, value: repeat_view['visualComplete']}
+        queue.add "wpt.repeat_view.timings.render_start" => { source: source, value: repeat_view['render']}
+        queue.add "wpt.repeat_view.bytes.in" => { source: source, value: repeat_view['bytesIn']}
+        queue.add "wpt.repeat_view.bytes.in_doc" => { source: source, value: repeat_view['bytesInDoc']}
+        queue.add "wpt.repeat_view.dom_elements" => { source: source, value: repeat_view['domElements']}
+        queue.add "wpt.repeat_view.responses.200" => { source: source, value: repeat_view['responses_200']}
+        queue.add "wpt.repeat_view.responses.404" => { source: source, value: repeat_view['responses_404']}
+        queue.add "wpt.repeat_view.responses.other" => { source: source, value: repeat_view['responses_other']}
       end
 
       queue.submit
