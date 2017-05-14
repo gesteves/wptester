@@ -29,7 +29,7 @@ class WPT
     if active_test? && !test_complete?
       puts 'WPT request skipped; last test not complete'
     else
-      url = "http://www.webpagetest.org/runtest.php?url=#{@url}&location=#{ENV['WPT_LOCATION']}&k=#{@key}&f=json&runs=#{ENV['WPT_RUNS']}"
+      url = "http://www.webpagetest.org/runtest.php?url=#{@url}&location=#{ENV['WPT_LOCATION']}&k=#{@key}&f=json&runs=#{ENV['WPT_RUNS']}&fvonly=1"
       request = HTTParty.get(url)
       response = JSON.parse(request.body)
       if response['statusCode'] == 200
