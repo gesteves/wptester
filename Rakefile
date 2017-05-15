@@ -27,5 +27,17 @@ namespace :wpt do
       abort "Failed to log WPT test: #{e}"
     end
   end
-end
 
+  desc 'Returns url of last WebPageTest test'
+  task :url => [:dotenv] do
+    begin
+      puts '== Getting latest WPT test url'
+      start_time = Time.now
+      wpt = WPT.new(ENV['SITE_URL'], ENV['WPT_API_KEY'])
+      puts wpt.latest_test_url
+      puts "Completed in #{Time.now - start_time} seconds"
+    rescue => e
+      abort "Failed to get WPT test: #{e}"
+    end
+  end
+end

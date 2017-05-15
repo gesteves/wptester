@@ -33,16 +33,22 @@ class WPT
       request = HTTParty.get(url)
       response = JSON.parse(request.body)
       if response['statusCode'] == 200
-        puts "WPT test requested: #{response['data']['userUrl']}"
+        puts "WPT test requested"
+        puts "HTML: #{response['data']['userUrl']}"
+        puts "JSON: #{response['data']['jsonUrl']}"
         @redis.set('wpt:test_url', response['data']['jsonUrl'])
       end
     end
   end
 
   def get_latest_result
-    latest_test = @redis.get('wpt:test_url')
+    latest_test = latest_test_url
     request = HTTParty.get(latest_test)
     JSON.parse(request.body)
+  end
+
+  def latest_test_url
+    @redis.get('wpt:test_url')
   end
 
   def log_results
