@@ -85,7 +85,6 @@ class WPT
         queue.add "wpt.first_view.responses.other" => { source: source, value: first_view['responses_other']}
         queue.add "wpt.first_view.requests.full" => { source: source, value: first_view['requestsFull']}
         queue.add "wpt.first_view.requests.doc" => { source: source, value: first_view['requestsDoc']}
-        queue.add "wpt.first_view.dom_elements" => { source: source, value: first_view['domElements']}
         queue.add "wpt.first_view.images.bytes" => { source: source, value: first_view['breakdown']['image']['bytes']}
         queue.add "wpt.first_view.images.bytes_uncompressed" => { source: source, value: first_view['breakdown']['image']['bytesUncompressed']}
         queue.add "wpt.first_view.images.requests" => { source: source, value: first_view['breakdown']['image']['requests']}
