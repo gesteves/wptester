@@ -5,11 +5,17 @@ namespace :wpt do
   desc 'Requests a new WebPageTest test'
   task :request => [:dotenv] do
     begin
-      puts '== Requesting new WPT test'
-      start_time = Time.now
-      wpt = WPT.new
-      wpt.request_test
-      puts "Completed in #{Time.now - start_time} seconds"
+      if ENV['SITE_URL'].nil?
+        puts "You need to specify the `SITE_URL` to be tested"
+      elsif ENV['PINGBACK_URL'].nil?
+        puts "You need to specify the `PINGBACK_URL`"
+      elsif ENV['WPT_API_KEY'].nil?
+        puts "You need a `WPT_API_KEY`"
+      else
+        start_time = Time.now
+        wpt = WPT.new
+        wpt.request_test
+      end
     rescue => e
       abort "Failed to request WPT test: #{e}"
     end

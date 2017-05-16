@@ -8,7 +8,11 @@ class WPT
   end
 
   def request_test
-    url = "http://www.webpagetest.org/runtest.php?url=#{ENV['SITE_URL']}&location=#{ENV['WPT_LOCATION']}&k=#{ENV['WPT_API_KEY']}&f=json&runs=#{ENV['WPT_RUNS']}&fvonly=1&browser_width=1280&browser_height=800&pingback=#{ENV['PINGBACK_URL']}"
+    location = ENV['LOCATION'] || 'Dulles:Chrome'
+    runs = ENV['RUNS'] || 5
+    width = ENV['WIDTH'] || 1280
+    height = ENV['HEIGHT'] || 800
+    url = "http://www.webpagetest.org/runtest.php?url=#{ENV['SITE_URL']}&location=#{location}&k=#{ENV['WPT_API_KEY']}&f=json&runs=#{runs}&fvonly=1&browser_width=#{width}&browser_height=#{height}&pingback=#{ENV['PINGBACK_URL']}"
     request = HTTParty.get(url)
     response = JSON.parse(request.body)
     if response['statusCode'] == 200
