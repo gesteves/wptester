@@ -2,6 +2,8 @@
 
 A simple way to run WebPageTest tests and log them in Librato.
 
+![](http://i.imgur.com/v4JNswc.png)
+
 ## Requirements
 
 ## Installation
