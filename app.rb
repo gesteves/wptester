@@ -6,6 +6,11 @@ configure do
   $stdout.sync = true
 end
 
+get '/' do
+  body 'Hello world'
+  status '200'
+end
+
 get '/log/:token' do
   if params[:id].nil? || params[:token] != ENV['TOKEN']
     body 'Bad Request'
