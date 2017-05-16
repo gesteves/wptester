@@ -1,0 +1,23 @@
+{
+  "name": "wptester",
+  "description": "Run WPT tests and log the results in Librato",
+  "repository": "https://github.com/gesteves/wptester",
+  "addons": [
+    "scheduler:standard"
+  ],
+  "success_url": "https://github.com/gesteves/wptester#usage",
+  "env": {
+    "WPT_API_KEY": {
+      "description": "WebPageTest API key.",
+      "required": true
+    },
+    "LIBRATO_USER": {
+      "description": "Your Librato account's email address.",
+      "required": true
+    },
+    "LIBRATO_TOKEN": {
+      "description": "Your Librato account's token.",
+      "required": true
+    }
+  }
+}
