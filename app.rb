@@ -1,6 +1,11 @@
 require 'sinatra'
 require_relative 'wpt'
 
+configure do
+  # Disable output buffering
+  $stdout.sync = true
+end
+
 get '/log/:token' do
   if params[:id].nil? || params[:token] != ENV['TOKEN']
     body 'Bad Request'
