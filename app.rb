@@ -11,16 +11,13 @@ get '/' do
   status '200'
 end
 
-get '/log/:token' do
-  if params[:id].nil? || params[:token].nil?
+get '/log/:source' do
+  if params[:id].nil? || params[:source].nil?
     body 'Bad Request'
     status 400
-  elsif params[:token] != ENV['TOKEN']
-    body 'Unauthorized'
-    status 401
   else
     wpt = WPT.new
-    wpt.get_test(params[:id])
+    wpt.get_test(params[:id], params[:source])
     body 'OK'
     status 200
   end

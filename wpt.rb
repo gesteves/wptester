@@ -18,20 +18,19 @@ class WPT
     end
   end
 
-  def get_test(test_id)
+  def get_test(test_id, source)
     puts "Fetching test #{test_id}"
     request = HTTParty.get("http://www.webpagetest.org/jsonResult.php?test=#{test_id}")
     if request.code == 200
       puts "Logging test #{test_id}"
       json = JSON.parse(request.body)
-      log_test_results(json)
+      log_test_results(json, source)
     end
   end
 
-  def log_test_results(json)
+  def log_test_results(json, source)
     Librato::Metrics.authenticate ENV['LIBRATO_USER'], ENV['LIBRATO_TOKEN']
     queue = Librato::Metrics::Queue.new
-    source = ENV['LIBRATO_SOURCE']
     unless json['data']['median']['firstView'].nil?
       first_view = json['data']['median']['firstView']
       queue.add "wpt.first_view.speedindex" => { source: source, value: first_view['SpeedIndex']}
