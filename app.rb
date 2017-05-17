@@ -1,9 +1,11 @@
 require 'sinatra'
 require_relative 'wpt'
+require 'dotenv'
 
 configure do
   # Disable output buffering
   $stdout.sync = true
+  Dotenv.load
 end
 
 get '/' do
@@ -19,8 +21,7 @@ get '/log/:token/:source' do
     body 'Unauthorized'
     status 401
   else
-    wpt = WPT.new
-    wpt.get_test(params[:id], params[:source])
+    WPT.get_test(params[:id], params[:source])
     body 'OK'
     status 200
   end

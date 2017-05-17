@@ -12,9 +12,7 @@ namespace :wpt do
       elsif ENV['WPT_API_KEY'].nil?
         puts "You need a `WPT_API_KEY`"
       else
-        start_time = Time.now
-        wpt = WPT.new
-        wpt.request_test
+        WPT.request_test
       end
     rescue => e
       abort "Failed to request WPT test: #{e}"

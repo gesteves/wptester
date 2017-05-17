@@ -1,13 +1,8 @@
 require 'httparty'
-require 'dotenv'
 require 'librato/metrics'
 
 class WPT
-  def initialize
-    Dotenv.load
-  end
-
-  def request_test
+  def self.request_test
     location = ENV['LOCATION'] || 'Dulles:Chrome'
     runs = ENV['RUNS'] || 5
     width = ENV['WIDTH'] || 1280
@@ -22,19 +17,17 @@ class WPT
     end
   end
 
-  def get_test(test_id, source)
-    puts "Fetching test #{test_id}"
+  def self.get_test(test_id, source)
     request = HTTParty.get("http://www.webpagetest.org/jsonResult.php?test=#{test_id}")
     if request.code == 200
-      puts "Logging test #{test_id}"
       json = JSON.parse(request.body)
-      log_test_results(json, source)
+      self.log_test_results(json, source)
     end
   end
 
-  def log_test_results(json, source)
+  def self.log_test_results(json, source)
     Librato::Metrics.authenticate ENV['LIBRATO_USER'], ENV['LIBRATO_TOKEN']
-
+    
     queue = Librato::Metrics::Queue.new
     unless json['data']['median']['firstView'].nil?
       first_view = json['data']['median']['firstView']
@@ -84,7 +77,6 @@ class WPT
     end
 
     queue.submit
-
     Librato::Metrics.annotate :wpt, json['data']['id'], source: source, start_time: json['data']['completed'], end_time: json['data']['completed'], description: json['data']['summary']
   end
 end
