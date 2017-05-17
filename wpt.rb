@@ -34,6 +34,7 @@ class WPT
 
   def log_test_results(json, source)
     Librato::Metrics.authenticate ENV['LIBRATO_USER'], ENV['LIBRATO_TOKEN']
+
     queue = Librato::Metrics::Queue.new
     unless json['data']['median']['firstView'].nil?
       first_view = json['data']['median']['firstView']
@@ -81,6 +82,9 @@ class WPT
       queue.add "wpt.first_view.other.bytes_uncompressed" => { source: source, value: first_view['breakdown']['other']['bytesUncompressed']}
       queue.add "wpt.first_view.other.requests" => { source: source, value: first_view['breakdown']['other']['requests']}
     end
+
     queue.submit
+
+    Librato::Metrics.annotate :wpt, json['data']['id'], source: source, start_time: json['data']['completed'], end_time: json['data']['completed'], description: json['data']['summary']
   end
 end
