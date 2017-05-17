@@ -7,10 +7,10 @@ namespace :wpt do
     begin
       if ENV['SITE_URL'].nil?
         puts "You need to specify the `SITE_URL` to be tested"
-      elsif ENV['PINGBACK_URL'].nil?
-        puts "You need to specify the `PINGBACK_URL`"
-      elsif ENV['WPT_API_KEY'].nil?
-        puts "You need a `WPT_API_KEY`"
+      elsif ENV['SOURCE'].nil?
+        puts "You need to enter a Librato `SOURCE`"
+      elsif ENV['HEROKU_APP_NAME'].nil?
+        puts "Make sure dyno metadata is enabled: `heroku labs:enable runtime-dyno-metadata`"
       else
         WPT.request_test
       end

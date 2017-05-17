@@ -7,7 +7,8 @@ class WPT
     runs = ENV['RUNS'] || 5
     width = ENV['WIDTH'] || 1280
     height = ENV['HEIGHT'] || 800
-    url = "http://www.webpagetest.org/runtest.php?url=#{ENV['SITE_URL']}&location=#{location}&k=#{ENV['WPT_API_KEY']}&f=json&runs=#{runs}&fvonly=1&browser_width=#{width}&browser_height=#{height}&pingback=#{ENV['PINGBACK_URL']}"
+    pingback_url = "https://#{ENV['HEROKU_APP_NAME']}.herokuapp.com/log/#{ENV['TOKEN']}/#{ENV['SOURCE']}"
+    url = "http://www.webpagetest.org/runtest.php?url=#{ENV['SITE_URL']}&location=#{location}&k=#{ENV['WPT_API_KEY']}&f=json&runs=#{runs}&fvonly=1&browser_width=#{width}&browser_height=#{height}&pingback=#{pingback_url}"
     request = HTTParty.get(url)
     response = JSON.parse(request.body)
     if response['statusCode'] == 200
