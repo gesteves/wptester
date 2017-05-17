@@ -16,7 +16,7 @@
       "required": true
     },
     "LIBRATO_TOKEN": {
-      "description": "Your Librato account's token.",
+      "description": "Your Librato record-only API token.",
       "required": true
     },
     "TOKEN": {
