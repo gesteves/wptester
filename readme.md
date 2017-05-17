@@ -34,7 +34,7 @@ The `SITE_URL` is the URL of the page you want to test in WPT.
 
 `SOURCE` is what you'll use in Librato to filter your metrics (e.g. if the page you're testing is your home page, you can put `homepage` as the source).
 
-You can test multiple pages by creating more scheduled jobs, just remember that WPT only allows a certain number of tests per day. If you set up multiple tests, remember to use different sources in the pingback URL so you can filter the metrics in Librato.
+You can test multiple pages by creating more scheduled jobs, just remember that WPT only allows a certain number of tests per day. If you set up multiple tests, remember to use different sources in the rake task so you can filter the metrics in Librato.
 
 Save the scheduled jobs, let them run, and then you can set up your charts however you like in Librato.
 
