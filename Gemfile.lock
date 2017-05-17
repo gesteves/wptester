@@ -11,9 +11,11 @@ GEM
       thor (~> 0.19.1)
     httparty (0.15.2)
       multi_xml (>= 0.5.2)
-    librato-metrics (2.1.2)
+    librato-metrics (1.6.1)
       aggregate (~> 0.2.2)
-      faraday
+      faraday (~> 0.7)
+      multi_json
+    multi_json (1.12.1)
     multi_xml (0.6.0)
     multipart-post (2.0.0)
     mustermann (1.0.0)
@@ -40,7 +42,7 @@ DEPENDENCIES
   dotenv
   foreman
   httparty
-  librato-metrics
+  librato-metrics (~> 1.6.1)
   rake
   sinatra
   thin
