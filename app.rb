@@ -15,7 +15,7 @@ get '/log/:token/:source' do
   if params[:id].nil? || params[:token].nil? || params[:source].nil?
     body 'Bad Request'
     status 400
-  if params[:token] != ENV['TOKEN']
+  elsif params[:token] != ENV['TOKEN']
     body 'Unauthorized'
     status 401
   else
