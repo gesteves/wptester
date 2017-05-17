@@ -27,7 +27,7 @@ class WPT
 
   def self.log_test_results(json, source)
     Librato::Metrics.authenticate ENV['LIBRATO_USER'], ENV['LIBRATO_TOKEN']
-    
+
     queue = Librato::Metrics::Queue.new
     unless json['data']['median']['firstView'].nil?
       first_view = json['data']['median']['firstView']
@@ -77,6 +77,6 @@ class WPT
     end
 
     queue.submit
-    Librato::Metrics.annotate :wpt, json['data']['id'], source: source, start_time: json['data']['completed'], end_time: json['data']['completed'], description: json['data']['summary']
+    Librato::Metrics.annotate :wpt, json['data']['id'], source: source, description: json['data']['summary']
   end
 end
