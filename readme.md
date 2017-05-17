@@ -27,7 +27,7 @@ $ heroku labs:enable runtime-dyno-metadata -a <app name>
 Once your app is deployed and running, go to the Resources page in the Heroku dashboard and open the Heroku Scheduler. Add a new job, make it daily (or hourly of you want, but keep in mind WPT only allows a limited number of tests each day, so it's kind of overkill), and make it run this rake task:
 
 ```
-rake wpt:request SITE_URL:http://... SOURCE=some-label
+rake wpt:request SITE_URL=http://... SOURCE=some-label
 ```
 
 The `SITE_URL` is the URL of the page you want to test in WPT.
