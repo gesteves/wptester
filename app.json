@@ -18,6 +18,11 @@
     "LIBRATO_TOKEN": {
       "description": "Your Librato account's token.",
       "required": true
+    },
+    "TOKEN": {
+      "description": "A random string to make your URLs harder to guess.",
+      "required": true,
+      "generator": "secret"
     }
   }
 }
