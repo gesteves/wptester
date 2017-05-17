@@ -6,7 +6,7 @@ A simple way to run WebPageTest tests and log them in Librato.
 
 ## Requirements
 
-* A [Heroku](https://www.heroku.com/) account
+* A [Heroku](https://www.heroku.com/) account, and the [Heroku CLI](https://devcenter.heroku.com/articles/heroku-cli)
 * A [Librato](https://www.librato.com/) account, and a record-only [API token](https://metrics.librato.com/account/tokens)
 * A [WebPageTest](https://www.webpagetest.org/getkey.php) API key
 
