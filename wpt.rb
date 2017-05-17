@@ -78,6 +78,6 @@ class WPT
     end
 
     queue.submit
-    Librato::Metrics.annotate :wpt, json['data']['id'], source: source, description: json['data']['summary']
+    Librato::Metrics.annotate :wpt, json['data']['id'], source: source, description: json['data']['from'].gsub(/<\/?b>/, ''), links: [{ label: 'WPT Results', href: json['data']['summary'], rel: 'wpt' }]
   end
 end
